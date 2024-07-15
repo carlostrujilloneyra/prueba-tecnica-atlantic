@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { Pokemon } from "../libs/interfaces/pokemon";
 import axios from "axios";
 import { Header } from "../components/shared/Header";
+import { toggleFavorite } from "../libs/services/store/slices/pokemon/pokemonSlice";
+import { useAppSelector } from "../libs/services/store/hooks";
 
 const getPokemon = async (id: string): Promise<Pokemon> => {
   try {
@@ -19,12 +22,18 @@ export const PokemonPage = () => {
 
   const navigate = useNavigate();
 
+  const dispatch = useDispatch();
+
+  const favorites = useAppSelector((state) => state.pokemons.favorites);
+
   const handleNavigatePrevious = () => {
     navigate(-1);
   };
 
   const handleCapturePokemon = () => {
-    console.log("Capturando pokemon ", pokemon);
+    if (id) {
+      dispatch(toggleFavorite(id));
+    }
   };
 
   useEffect(() => {
@@ -134,12 +143,20 @@ export const PokemonPage = () => {
           </div>
         </div>
 
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-5 w-[240px]"
-          onClick={handleCapturePokemon}
-        >
-          Capturar Pokemon
-        </button>
+        {!favorites[id] && (
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-5 w-[240px]"
+            onClick={handleCapturePokemon}
+          >
+            Capturar Pokemon
+          </button>
+        )}
+
+        {favorites[id] && (
+          <span className="mt-4 ml-4 bg-slate-600 w-[180px] text-center px-4 py-2 text-white rounded-lg">
+            Pokemon capturado
+          </span>
+        )}
       </div>
     </>
   );

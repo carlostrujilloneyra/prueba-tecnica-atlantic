@@ -6,6 +6,7 @@ interface PokemonState {
   page: number;
   isLoading: boolean;
   pokemons: Result[];
+  favorites: { [key: string]: boolean };
 }
 
 interface PokemonPayload {
@@ -22,6 +23,7 @@ const initialState: PokemonState = {
   page: 0,
   isLoading: false,
   pokemons: [],
+  favorites: {},
 };
 
 export const pokemonSlice = createSlice({
@@ -38,9 +40,9 @@ export const pokemonSlice = createSlice({
       state.page = action.payload.page;
     },
 
-    toggleFavorite(state, action: PayloadAction<Result>) {
-      const pokemon = action.payload;
-      const { id } = pokemon;
+    toggleFavorite(state, action: PayloadAction<string>) {
+      const pokemonId = action.payload;
+      state.favorites[pokemonId] = !state.favorites[pokemonId];
     },
   },
 });

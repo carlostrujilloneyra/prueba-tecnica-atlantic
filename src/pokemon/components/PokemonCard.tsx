@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Result } from "../libs/interfaces/api-response";
 import { useAppDispatch, useAppSelector } from "../libs/services/store/hooks";
+import { toggleFavorite } from "../libs/services/store/slices/pokemon/pokemonSlice";
 
 interface Props {
   pokemon: Result;
@@ -11,10 +12,12 @@ export const PokemonCard = ({ pokemon }: Props) => {
 
   const dispatch = useAppDispatch();
 
-  usesat;
+  const favorites = useAppSelector((state) => state.pokemons.favorites);
 
-  const handleCapturePokemon = (pokemon: any) => {
-    console.log("Capturando pokemon", pokemon);
+  const handleCapturePokemon = () => {
+    if (id) {
+      dispatch(toggleFavorite(id));
+    }
   };
 
   return (
@@ -35,12 +38,14 @@ export const PokemonCard = ({ pokemon }: Props) => {
 
           <button
             className="text-white cursor-pointer font-semibold underline"
-            onClick={() => handleCapturePokemon(pokemon)}
+            onClick={handleCapturePokemon}
           >
             Atrapar pokemon
           </button>
 
-          <span className="text-lime-500 mt-2 text-sm">Pokemon atrapado</span>
+          {favorites[id] && (
+            <span className="text-lime-500 mt-2 text-sm">Pokemon atrapado</span>
+          )}
 
           <div className="mt-5">
             <Link

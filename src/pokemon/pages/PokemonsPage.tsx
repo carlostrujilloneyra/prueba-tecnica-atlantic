@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../libs/services/store/hooks";
 import { getPokemons } from "../libs/services/store/slices/pokemon/thunks";
 import { PokemonGrid } from "../components/PokemonGrid";
 import { Header } from "../components/shared/Header";
+import { toggleFavorite } from "../libs/services/store/slices/pokemon/pokemonSlice";
 
 export const PokemonsPage = () => {
   const dispatch = useAppDispatch();
