@@ -5,7 +5,9 @@ import { UserContext } from "../../libs/services/context/UserContext";
 export const Header = () => {
   const navigate = useNavigate();
 
-  const { setIsLogged, name, isLogged } = useContext(UserContext);
+  const { setIsLogged, name } = useContext(UserContext);
+
+  const isLogged = localStorage.getItem("user");
 
   const handleNavigateHome = () => {
     navigate("/");

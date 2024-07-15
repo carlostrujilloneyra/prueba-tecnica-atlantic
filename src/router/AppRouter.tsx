@@ -6,12 +6,10 @@ import { PrivateRoute } from "./PrivateRoutes";
 export const AppRouter = () => {
   return (
     <Routes>
-      <Route element={<PublicRoute />}>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/pokemons" element={<PokemonsPage />} />
-        <Route path="/pokemons/:id" element={<PokemonPage />} />
-      </Route>
+      <Route path="/" element={<LoginPage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/pokemons" element={<PokemonsPage />} />
+      <Route path="/pokemons/:id" element={<PokemonPage />} />
 
       {/* <Route element={<PrivateRoute />}>
         <>
