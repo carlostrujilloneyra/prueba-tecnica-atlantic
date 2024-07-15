@@ -9,21 +9,12 @@ interface Props {
 export const PokemonCard = ({ pokemon }: Props) => {
   const { id, name } = pokemon;
 
-  console.log(id, name);
-
-  // const isFavorite = useAppSelector((state) => !!state.pokemons.favorites[id]);
-  const isFavorite = useAppSelector(
-    (state) => !!state.pokemons.caughtPokemons[id]
-  );
-
   const dispatch = useAppDispatch();
 
-  // const onToggle = () => {
-  //   dispatch(toggleFavorite(pokemon));
-  // };
+  usesat;
 
-  const onToggle = () => {
-    dispatch(toggleFavorite(pokemon));
+  const handleCapturePokemon = (pokemon: any) => {
+    console.log("Capturando pokemon", pokemon);
   };
 
   return (
@@ -42,7 +33,10 @@ export const PokemonCard = ({ pokemon }: Props) => {
             {name}
           </p>
 
-          <button className="text-white cursor-pointer font-semibold underline">
+          <button
+            className="text-white cursor-pointer font-semibold underline"
+            onClick={() => handleCapturePokemon(pokemon)}
+          >
             Atrapar pokemon
           </button>
 
@@ -55,23 +49,6 @@ export const PokemonCard = ({ pokemon }: Props) => {
             >
               Más información
             </Link>
-          </div>
-        </div>
-
-        <div className="border-b">
-          <div
-            // onClick={onToggle}
-            className="px-4 py-2 hover:bg-gray-100 flex items-center cursor-pointer"
-          >
-            {/* <div className="text-red-600">
-              {isFavorite ? <IoHeart /> : <IoHeartOutline />}
-            </div>
-            <div className="pl-3">
-              <p className="text-sm font-medium text-gray-800 leading-none">
-                {isFavorite ? "Es favorito" : "No es favorito"}
-              </p>
-              <p className="text-xs text-gray-500">Click para cambiar</p>
-            </div> */}
           </div>
         </div>
       </div>

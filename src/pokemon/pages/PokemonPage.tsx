@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Pokemon } from "../libs/interfaces/pokemon";
 import axios from "axios";
+import { Header } from "../components/shared/Header";
 
 const getPokemon = async (id: string): Promise<Pokemon> => {
   try {
@@ -22,6 +23,10 @@ export const PokemonPage = () => {
     navigate(-1);
   };
 
+  const handleCapturePokemon = () => {
+    console.log("Capturando pokemon ", pokemon);
+  };
+
   useEffect(() => {
     const fetchPokemon = async () => {
       if (id) {
@@ -37,6 +42,7 @@ export const PokemonPage = () => {
 
   return (
     <>
+      <Header />
       <button
         className="bg-slate-600 px-4 py-2 ml-4 mb-5 text-white rounded-md cursor-pointer"
         onClick={handleNavigatePrevious}
@@ -127,6 +133,13 @@ export const PokemonPage = () => {
             </div>
           </div>
         </div>
+
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-5 w-[240px]"
+          onClick={handleCapturePokemon}
+        >
+          Capturar Pokemon
+        </button>
       </div>
     </>
   );

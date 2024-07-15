@@ -1,10 +1,22 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../libs/services/context/UserContext";
 
 export const Header = () => {
   const navigate = useNavigate();
 
+  const { setIsLogged, name, isLogged } = useContext(UserContext);
+
+  console.log(isLogged);
+
   const handleNavigateHome = () => {
     navigate("/");
+  };
+
+  const handleLogout = () => {
+    setIsLogged(false);
+    localStorage.removeItem("user");
+    navigate("/login");
   };
 
   return (
@@ -17,7 +29,16 @@ export const Header = () => {
           API Pokedex
         </h2>
 
-        <button>Cerrar Sesión</button>
+        {isLogged && (
+          <p className="text-white font-medium">Bienvenido(a): {name}</p>
+        )}
+
+        <button
+          className="text-white bg-blue-700 font-semibold px-3 py-2 rounded-xl"
+          onClick={handleLogout}
+        >
+          Cerrar Sesión
+        </button>
       </header>
     </>
   );
