@@ -8,7 +8,7 @@
   }
 
   body {
-    @apply p-6;
+    @apply py-[100px] px-8;
   }
 
   h1,
