@@ -11,9 +11,9 @@ git clone https://github.com/carlostrujilloneyra/prueba-tecnica-atlantic.git
 
 Abrir el proyecto desde la terminal, en caso de estar en desktop:
 
-cd desktop
-cd prueba-tecnica-atlantic
-nm install (para instalar las dependencias)
+- cd desktop
+- cd prueba-tecnica-atlantic
+- npm install (para instalar las dependencias)
 
 ### Una vez instalada las dependencias:
 
