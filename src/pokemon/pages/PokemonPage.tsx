@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Pokemon } from "../libs/interfaces/pokemon";
 import axios from "axios";
 import { Header } from "../components/shared/Header";

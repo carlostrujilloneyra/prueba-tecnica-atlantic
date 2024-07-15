@@ -7,8 +7,6 @@ export const Header = () => {
 
   const { setIsLogged, name, isLogged } = useContext(UserContext);
 
-  console.log(isLogged);
-
   const handleNavigateHome = () => {
     navigate("/");
   };
