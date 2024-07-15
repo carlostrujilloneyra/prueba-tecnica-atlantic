@@ -15,10 +15,6 @@ interface PokemonPayload {
   page: number;
 }
 
-interface PokemonsState {
-  caughtPokemons: { [key: string]: Result };
-}
-
 const initialState: PokemonState = {
   page: 0,
   isLoading: false,
